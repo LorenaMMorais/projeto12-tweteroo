@@ -38,8 +38,8 @@ server.post('/tweets', (req,res) => {
 
 server.get('/tweets', (req, res) => {
     const lastTenTweets = tweets.slice(tweets.length - 10);
+    
     res.send(lastTenTweets);
-
 });
 
 server.listen(PORT,() =>{console.log('Server Rodando na porta', PORT)})
