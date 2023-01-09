@@ -1,23 +1,25 @@
-import express, { application, json } from "express";
+import express from "express";
 import cors from 'cors';
 
 const server = express();
 server.use(cors());
-server.use(json());
+server.use(express.json());
 
-const PORT = 8080;
+const PORT = 5000;
 
 const users = [];
 const tweets = [];
 
 server.post('/sign-up', (req, res) => {
-    const body = req.body;
-    const user = {
-        username: body.username,
-        avatar: body.avatar
+    const {username, avatar} = req.body;
+   
+    if(!username || !avatar) {
+        res.status(422).send("Todos os campos são obrigatórios");
+        return
     };
-    users.push(user);
-    res.send('OK');
+    
+    users.push({ username, avatar });
+    res.status(201).send('OK');
 });
 
 server.get('/sign-up', (req,res) => {
@@ -35,7 +37,9 @@ server.post('/tweets', (req,res) => {
 });
 
 server.get('/tweets', (req, res) => {
-    res.send(tweets.slice(tweets.length - 10));
+    const lastTenTweets = tweets.slice(tweets.length - 10);
+    res.send(lastTenTweets);
+
 });
 
 server.listen(PORT,() =>{console.log('Server Rodando na porta', PORT)})
