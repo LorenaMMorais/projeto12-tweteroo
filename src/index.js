@@ -15,8 +15,11 @@ server.post('/sign-up', (req, res) => {
         avatar: body.avatar
     };
     users.push(user);
-    console.log('Foi!');
     res.send('OK');
+});
+
+server.get('/sign-up', (req,res) => {
+    res.send(users);
 });
 
 server.listen(PORT,() =>{console.log('Server Rodando na porta', PORT)})
