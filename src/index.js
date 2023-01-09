@@ -13,10 +13,11 @@ const tweets = [];
 server.post('/sign-up', (req, res) => {
     const {username, avatar} = req.body;
    
-    if(username === "" || avatar === "") return res.status(422).send("Todos os campos são obrigatórios");
-
-    if(!username || typeof username !== 'string' || !avatar) return  res.sendStatus(400);
-
+    if(!username || !avatar) {
+        res.status(422).send("Todos os campos são obrigatórios");
+        return
+    };
+    
     users.push({ username, avatar });
     res.status(201).send('OK');
 });
@@ -26,30 +27,18 @@ server.get('/sign-up', (req,res) => {
 });
 
 server.post('/tweets', (req,res) => {
-/*     const tweet = req.body;
-    const userSign = users.find(user => user.username === tweet.username);
-
-    if(!userSign){
-        res.sendStatus(401);
-        return;
-    }
-
+    const body = req.body;
+    const tweet = {
+        username: body.username,
+        tweet: body.tweet
+    };
     tweets.push(tweet);
-    res.status(201).send('OK');
-*/
-    const {username, tweet} = req.body;
-
-    if(username === "" || tweet === "") return res.status(422).send("Todos os campos são obrigatórios");
-
-    tweets.push(username, tweet);
     res.send('OK');
-}); 
+});
 
 server.get('/tweets', (req, res) => {
     const lastTenTweets = tweets.slice(tweets.length - 10);
-    
     res.send(lastTenTweets);
-
 
 });
 
