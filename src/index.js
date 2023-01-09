@@ -5,7 +5,7 @@ const server = express();
 server.use(cors());
 server.use(json());
 
-const PORT = 5000;
+const PORT = 8080;
 
 const users = [];
 const tweets = [];
@@ -32,6 +32,10 @@ server.post('/tweets', (req,res) => {
     };
     tweets.push(tweet);
     res.send('OK');
+});
+
+server.get('/tweets', (req, res) => {
+    res.send(tweets.slice(tweets.length - 10));
 });
 
 server.listen(PORT,() =>{console.log('Server Rodando na porta', PORT)})
