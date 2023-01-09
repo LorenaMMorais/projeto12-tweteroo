@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-		"dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "author": "Lorena Morais",
   "license": "ISC",
@@ -15,5 +15,13 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorenaMMorais/projeto12-tweteroo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LorenaMMorais/projeto12-tweteroo/issues"
+  },
+  "homepage": "https://github.com/LorenaMMorais/projeto12-tweteroo#readme",
   "description": ""
 }
